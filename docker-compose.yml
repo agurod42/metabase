@@ -11,7 +11,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: TY7z4z1dQxMy2Lv
       PGDATA: /var/lib/postgresql/data
     volumes:
       - postgres-data:/var/lib/postgresql/data
@@ -20,15 +20,15 @@ services:
     image: metabase/metabase
     restart: always
     ports:
-      - 8080:3000
+      - 3000:3000
     volumes:
       - metabase-data:/metabase-data
     environment:
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: metabase
       MB_DB_PORT: 5432
-      MB_DB_USER: metabase
-      MB_DB_PASS: postgres
+      MB_DB_USER: postgres
+      MB_DB_PASS: TY7z4z1dQxMy2Lv
       MB_DB_HOST: postgres-db
     depends_on:
       - postgres-db
