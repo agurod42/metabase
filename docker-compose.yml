@@ -7,8 +7,9 @@ volumes:
 services:
   postgres-db:
     image: postgres
-    network_mode: "host"
     restart: always
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_DB: metabase
       POSTGRES_PASSWORD: TY7z4z1dQxMy2Lv
@@ -18,8 +19,9 @@ services:
 
   metabase-app:
     image: metabase/metabase
-    network_mode: "host"
     restart: always
+    ports:
+      - 3000:3000
     volumes:
       - metabase-data:/metabase-data
     environment:
@@ -28,4 +30,8 @@ services:
       MB_DB_PORT: 5432
       MB_DB_USER: postgres
       MB_DB_PASS: TY7z4z1dQxMy2Lv
-      MB_DB_HOST: localhost
+      MB_DB_HOST: postgres-db
+    depends_on:
+      - postgres-db
+    links:
+      - postgres-db
