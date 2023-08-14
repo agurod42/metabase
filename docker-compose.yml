@@ -7,7 +7,7 @@ volumes:
 services:
   postgres-db:
     image: postgres
-    network_mode: "bridge"
+    network_mode: "host"
     restart: always
     environment:
       POSTGRES_DB: metabase
@@ -18,7 +18,7 @@ services:
 
   metabase-app:
     image: metabase/metabase
-    network_mode: "bridge"
+    network_mode: "host"
     restart: always
     volumes:
       - metabase-data:/metabase-data
